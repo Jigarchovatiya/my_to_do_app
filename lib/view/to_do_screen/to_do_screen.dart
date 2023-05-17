@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:my_to_do_app/res/constant/color_constant.dart';
 import 'package:my_to_do_app/view/home_screen/home_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ToDoScreen extends StatefulWidget {
   const ToDoScreen({Key? key}) : super(key: key);
@@ -10,6 +13,34 @@ class ToDoScreen extends StatefulWidget {
 }
 
 class _ToDoScreenState extends State<ToDoScreen> {
+  TextEditingController titleController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+  String? time = "";
+
+  SharedPreferences? sharedPreferences;
+
+  setInstant() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+  }
+
+  setData() {
+    Map<String, dynamic> data = {
+      "title": titleController.text,
+      "description": descriptionController.text,
+      "time": time,
+    };
+
+    sharedPreferences!.setStringList("ToDoData", [jsonEncode(data)]);
+    Navigator.pop(context);
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    setInstant();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
