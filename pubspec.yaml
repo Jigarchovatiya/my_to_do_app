@@ -78,15 +78,17 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: IBM_Plex_Mono
+    - family: inter
       fonts:
-        - asset: assets/fonts/IBM_Plex_Mono/IBMPlexMono-Bold.ttf
-        - asset: assets/fonts/IBM_Plex_Mono/IBMPlexMono-ExtraLight.ttf
-        - asset: assets/fonts/IBM_Plex_Mono/IBMPlexMono-Light.ttf
-        - asset: assets/fonts/IBM_Plex_Mono/IBMPlexMono-Medium.ttf
-        - asset: assets/fonts/IBM_Plex_Mono/IBMPlexMono-Regular.ttf
-        - asset: assets/fonts/IBM_Plex_Mono/IBMPlexMono-SemiBold.ttf
-        - asset: assets/fonts/IBM_Plex_Mono/IBMPlexMono-Thin.ttf
+        - asset: assets/fonts/inter/Inter-Black.ttf
+        - asset: assets/fonts/inter/Inter-Bold.ttf
+        - asset: assets/fonts/inter/Inter-ExtraBold.ttf
+        - asset: assets/fonts/inter/Inter-ExtraLight.ttf
+        - asset: assets/fonts/inter/Inter-Light.ttf
+        - asset: assets/fonts/inter/Inter-Medium.ttf
+        - asset: assets/fonts/inter/Inter-Regular.ttf
+        - asset: assets/fonts/inter/Inter-SemiBold.ttf
+        - asset: assets/fonts/inter/Inter-Thin.ttf
           style: normal
   #   - family: Trajan Pro
   #     fonts:
