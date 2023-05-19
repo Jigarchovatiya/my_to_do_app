@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_to_do_app/res/constant/app_colors.dart';
 import 'package:my_to_do_app/view/bottom_bar/home_screen/home_screen.dart';
+import 'package:my_to_do_app/view/bottom_bar/profile_screen/profile_screen.dart';
 import 'package:my_to_do_app/view/bottom_bar/task_screen/task_screen.dart';
 
 class BottomScreen extends StatefulWidget {
@@ -14,7 +15,7 @@ class _BottomScreenState extends State<BottomScreen> {
   final List screenList = [
     const HomeScreen(),
     const TaskScreen(),
-    // const ProfileScreen(),
+    const ProfileScreen(),
   ];
 
   int selectedIndex = 0;

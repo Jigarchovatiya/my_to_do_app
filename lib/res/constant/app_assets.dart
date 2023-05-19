@@ -5,4 +5,7 @@ class AppAssets {
   static const String splashLogo = "${imageBasePath}splash_logo.png";
   static const String splashLogoTwo = "${imageBasePath}Web Design 2.png";
   static const String guruIcon = "${iconBasePath}guru_icon.png";
+
+  ///profile screen
+  static const String profile = "${imageBasePath}profile_pic.png";
 }

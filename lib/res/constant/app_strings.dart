@@ -11,4 +11,7 @@ class AppStrings {
   static const String textLabelTwo = "Description";
   static const String buttonTextOne = "Create Tasks";
   static const String buttonTextTwo = "Cancel";
+
+  /// profile
+  static const String profileText = "Bhiku Mahatre";
 }
