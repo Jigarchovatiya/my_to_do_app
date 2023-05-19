@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_to_do_app/res/common/checkbox_list_tile.dart';
 import 'package:my_to_do_app/res/constant/app_colors.dart';
 import 'package:my_to_do_app/res/constant/app_strings.dart';
+import 'package:my_to_do_app/view/bottom_bar/profile_screen/profile_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../res/constant/app_assets.dart';
@@ -41,10 +42,22 @@ class _HomeScreenState extends State<HomeScreen> {
           margin: const EdgeInsets.all(10),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(100),
-            child: Image.asset(
-              fit: BoxFit.cover,
-              AppAssets.profile,
-              height: height / 8,
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ProfileScreen(),
+                    ),
+                  );
+                });
+              },
+              child: Image.asset(
+                fit: BoxFit.cover,
+                AppAssets.profile,
+                height: height / 8,
+              ),
             ),
           ),
         ),

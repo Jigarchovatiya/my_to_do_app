@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_to_do_app/res/constant/app_strings.dart';
+import 'package:my_to_do_app/view/bottom_bar/bottom_Bar_screen.dart';
 
 import '../../../res/constant/app_colors.dart';
 
@@ -141,7 +142,14 @@ class _TaskScreenState extends State<TaskScreen> {
               ),
               GestureDetector(
                 onTap: () {
-                  setState(() {});
+                  setState(() {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const BottomScreen(),
+                      ),
+                    );
+                  });
                 },
                 child: Container(
                   padding: const EdgeInsets.symmetric(
@@ -168,7 +176,14 @@ class _TaskScreenState extends State<TaskScreen> {
               ),
               GestureDetector(
                 onTap: () {
-                  setState(() {});
+                  setState(() {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const BottomScreen(),
+                      ),
+                    );
+                  });
                 },
                 child: Container(
                   padding: const EdgeInsets.symmetric(
