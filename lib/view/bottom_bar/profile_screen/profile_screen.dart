@@ -43,10 +43,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
           children: [
             Center(
               child: Container(
+                width: 100,
                 margin: const EdgeInsets.all(20),
-                child: Image.asset(
-                  AppAssets.profile,
-                  height: height / 8,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(150),
+                  child: Image.asset(
+                    fit: BoxFit.cover,
+                    AppAssets.profile,
+                    height: height / 8,
+                  ),
                 ),
               ),
             ),
@@ -60,15 +65,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             ListView.builder(
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: 5,
               itemBuilder: (context, index) => GestureDetector(
                 child: ListTile(
                   leading: Icon(
                     profileList[index]["leading"],
+                    color: index == 4 ? AppColors.red : AppColors.black,
                   ),
-                  title: Text(profileList[index]["title"]),
-                  trailing: index == 4 ? SizedBox() : Icon(Icons.arrow_forward_ios),
+                  title: Text(
+                    profileList[index]["title"],
+                    style: TextStyle(
+                      color: index == 4 ? AppColors.red : AppColors.black,
+                    ),
+                  ),
+                  trailing: index == 4 ? const SizedBox() : const Icon(Icons.arrow_forward_ios, color: AppColors.black),
                   onTap: () {
                     setState(() {});
                   },

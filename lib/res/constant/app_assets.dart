@@ -7,5 +7,5 @@ class AppAssets {
   static const String guruIcon = "${iconBasePath}guru_icon.png";
 
   ///profile screen
-  static const String profile = "${imageBasePath}profile_pic.png";
+  static const String profile = "${imageBasePath}Mansoor.png";
 }

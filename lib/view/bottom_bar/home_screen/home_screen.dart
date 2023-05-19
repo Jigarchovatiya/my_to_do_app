@@ -4,6 +4,8 @@ import 'package:my_to_do_app/res/constant/app_colors.dart';
 import 'package:my_to_do_app/res/constant/app_strings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../res/constant/app_assets.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -24,28 +26,35 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-          foregroundColor: AppColors.black,
-          backgroundColor: AppColors.transparent,
-          elevation: 0,
-          centerTitle: true,
-          title: const Text(
-            AppStrings.appBar,
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
-          ),
-          leading: Container(
-            margin: const EdgeInsets.all(10),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(150),
-              child: Image.asset(
-                "assets/images/profile_pic.png",
-              ),
+        foregroundColor: AppColors.black,
+        backgroundColor: AppColors.transparent,
+        elevation: 0,
+        centerTitle: true,
+        title: const Text(
+          AppStrings.appBar,
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
+        ),
+        leading: Container(
+          margin: const EdgeInsets.all(10),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(100),
+            child: Image.asset(
+              fit: BoxFit.cover,
+              AppAssets.profile,
+              height: height / 8,
             ),
           ),
-          actions: const [
-            Icon(Icons.more_vert),
-          ]),
+        ),
+        actions: [
+          Container(
+            margin: const EdgeInsets.only(right: 15),
+            child: const Icon(Icons.more_vert),
+          ),
+        ],
+      ),
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -54,16 +63,18 @@ class _HomeScreenState extends State<HomeScreen> {
               AppStrings.title,
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
             ),
-            const SizedBox(height: 10),
+            SizedBox(height: height / 30),
             SizedBox(
               width: 331,
-              height: 11,
+              height: 8,
               child: ClipRRect(
                 borderRadius: const BorderRadius.all(Radius.circular(5)),
                 child: LinearProgressIndicator(
                   value: boolList[0] == true
                       ? boolList[1] == true
-                          ? 0.20
+                          ? boolList[2] == true
+                              ? 0.30
+                              : 0.20
                           : 0.10
                       : progressValue,
                   color: AppColors.materialAppColor,
@@ -71,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: height / 30),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
@@ -87,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     margin: const EdgeInsets.symmetric(horizontal: 15),
                     decoration: BoxDecoration(
                       color: selectedIndex == index ? AppColors.materialAppColor : AppColors.deActiveIcon,
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: BorderRadius.circular(100),
                     ),
                     child: Center(
                       child: Text(

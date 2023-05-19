@@ -28,13 +28,14 @@ class _CheckboxListTileScreenState extends State<CheckboxListTileScreen> {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
-        itemCount: boolList.length,
+        physics: const BouncingScrollPhysics(),
+        itemCount: textList.length,
         itemBuilder: (context, index) {
           return ListTile(
             onTap: () {
               setState(() {});
             },
-            trailing: CloseButton(),
+            trailing: const CloseButton(),
             title: Text(
               textList[index],
             ),
