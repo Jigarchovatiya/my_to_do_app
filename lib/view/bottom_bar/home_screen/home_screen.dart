@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:my_to_do_app/res/common/checkbox_list_tile.dart';
 import 'package:my_to_do_app/res/constant/app_colors.dart';
 import 'package:my_to_do_app/res/constant/app_strings.dart';
-import 'package:my_to_do_app/view/bottom_bar/profile_screen/profile_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../res/constant/app_assets.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  final Function(String)? onTab;
+  const HomeScreen({Key? key, this.onTab}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -23,7 +22,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
   bool select = true;
   int selectedIndex = 0;
+  int progressIndex = 0;
   double progressValue = 0.0;
+
+  List textList = [
+    {"title": "Practice daily UI challenge", "isSelect": false},
+    {"title": "Take a bath", "isSelect": false},
+    {"title": "Reading for 30 minutes", "isSelect": false},
+    {"title": "Post on social media", "isSelect": false},
+    {"title": "Practice daily UI challenge", "isSelect": false},
+    {"title": "Practice daily UI challenge", "isSelect": false},
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -44,14 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
             borderRadius: BorderRadius.circular(100),
             child: GestureDetector(
               onTap: () {
-                setState(() {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const ProfileScreen(),
-                    ),
-                  );
-                });
+                widget.onTab!("Profile");
               },
               child: Image.asset(
                 fit: BoxFit.cover,
@@ -77,21 +79,15 @@ class _HomeScreenState extends State<HomeScreen> {
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
             ),
             SizedBox(height: height / 30),
-            SizedBox(
+            const SizedBox(
               width: 331,
               height: 8,
               child: ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(5)),
+                borderRadius: BorderRadius.all(Radius.circular(5)),
                 child: LinearProgressIndicator(
-                  value: boolList[0] == true
-                      ? boolList[1] == true
-                          ? boolList[2] == true
-                              ? 0.30
-                              : 0.20
-                          : 0.10
-                      : progressValue,
+                  value: 0.5,
                   color: AppColors.materialAppColor,
-                  backgroundColor: const Color(0xffF0F0F2),
+                  backgroundColor: Color(0xffF0F0F2),
                 ),
               ),
             ),
@@ -103,6 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 (index) => GestureDetector(
                   onTap: () {
                     selectedIndex = index;
+
                     setState(() {});
                   },
                   child: Container(
@@ -143,7 +140,46 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            selectedIndex == 0 ? const CheckboxListTileScreen() : const CheckboxListTileScreen(),
+            selectedIndex == 0
+                ? Expanded(
+                    child: ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      itemCount: textList.length,
+                      padding: EdgeInsets.zero,
+                      itemBuilder: (context, index) {
+                        return CheckboxListTile(
+                          value: textList[index]["isSelect"],
+                          controlAffinity: ListTileControlAffinity.leading,
+                          activeColor: AppColors.materialAppColor,
+                          secondary: CloseButton(
+                            onPressed: () {
+                              // if (textList[index]["isSelect"]) {
+                              //   progressIndex--;
+                              // }
+
+                              if (textList[index]["isSelect"]) {
+                                progressValue = progressValue - (progressIndex / textList.length);
+                              }
+                              textList.removeAt(index);
+                              setState(() {});
+                            },
+                          ),
+                          onChanged: (value) {
+                            if (!textList[index]["isSelect"]) {
+                              textList[index]["isSelect"] = true;
+                              progressIndex++;
+                              progressValue = progressIndex / textList.length;
+                            }
+                            setState(() {});
+                          },
+                          title: Text(
+                            textList[index]["title"],
+                          ),
+                        );
+                      },
+                    ),
+                  )
+                : Container(color: AppColors.materialAppColor, height: 200),
           ],
         ),
       ),

@@ -12,17 +12,35 @@ class BottomScreen extends StatefulWidget {
 }
 
 class _BottomScreenState extends State<BottomScreen> {
-  final List screenList = [
-    const HomeScreen(),
-    const TaskScreen(),
-    const ProfileScreen(),
-  ];
-
   int selectedIndex = 0;
+  List screenList = [];
+
+  onScreenChange(String? value) {
+    debugPrint(value);
+    if (value == "Profile") {
+      selectedIndex = 2;
+    } else if (value == "Task") {
+      selectedIndex = 0;
+    }
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    screenList = [
+      HomeScreen(onTab: onScreenChange),
+      TaskScreen(onTab: onScreenChange),
+      const ProfileScreen(),
+    ];
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFFEFAF4),
+      body: screenList.elementAt(selectedIndex),
       bottomNavigationBar: SizedBox(
         height: 70,
         child: BottomNavigationBar(
@@ -37,17 +55,11 @@ class _BottomScreenState extends State<BottomScreen> {
             BottomNavigationBarItem(
               activeIcon: Container(
                 decoration: const BoxDecoration(shape: BoxShape.circle, color: AppColors.white),
-                child: const Icon(
-                  Icons.add,
-                  color: AppColors.materialAppColor,
-                ),
+                child: const Icon(Icons.add, color: AppColors.materialAppColor),
               ),
               icon: Container(
                 decoration: const BoxDecoration(shape: BoxShape.circle, color: AppColors.deActiveIcon),
-                child: const Icon(
-                  Icons.add,
-                  color: AppColors.materialAppColor,
-                ),
+                child: const Icon(Icons.add, color: AppColors.materialAppColor),
               ),
               label: 'Task',
             ),
@@ -65,7 +77,6 @@ class _BottomScreenState extends State<BottomScreen> {
           }),
         ),
       ),
-      body: screenList.elementAt(selectedIndex),
     );
   }
 }

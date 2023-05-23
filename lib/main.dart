@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_to_do_app/res/constant/app_colors.dart';
 import 'package:my_to_do_app/view/splash_screen/SplashScreen.dart';
 
 void main() {
@@ -15,7 +16,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         fontFamily: "inter",
-        primaryColor: const Color(0xFF2B7A63),
+        primaryColor: AppColors.materialColor,
+
         // primarySwatch: AppColors.materialAppColor,
         bottomSheetTheme: const BottomSheetThemeData(backgroundColor: Colors.transparent),
       ),
